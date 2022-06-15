@@ -48,4 +48,28 @@ module "application" {
   application_name = var.application_name
   environment      = local.environment
   location         = var.location
+
+  database_url      = module.database.database_url
+  database_username = module.database.database_username
+  database_password = module.database.database_password
+
+  azure_storage_account_name  = module.storage-blob.azurerm_storage_account_name
+  azure_storage_blob_endpoint = module.storage-blob.azurerm_storage_blob_endpoint
+  azure_storage_account_key   = module.storage-blob.azurerm_storage_account_key
+}
+
+module "database" {
+  source           = "./modules/sql-server"
+  resource_group   = azurerm_resource_group.main.name
+  application_name = var.application_name
+  environment      = local.environment
+  location         = var.location
+}
+
+module "storage-blob" {
+  source           = "./modules/storage-blob"
+  resource_group   = azurerm_resource_group.main.name
+  application_name = var.application_name
+  environment      = local.environment
+  location         = var.location
 }

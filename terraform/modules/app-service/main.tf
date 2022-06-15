@@ -83,5 +83,13 @@ resource "azurerm_linux_web_app" "application" {
     "WEBSITES_PORT"                       = "8080"
 
     # These are app specific environment variables
+
+    "DATABASE_URL"      = var.database_url
+    "DATABASE_USERNAME" = var.database_username
+    "DATABASE_PASSWORD" = var.database_password
+
+    "AZURE_STORAGE_ACCOUNT_NAME"  = var.azure_storage_account_name
+    "AZURE_STORAGE_BLOB_ENDPOINT" = var.azure_storage_blob_endpoint
+    "AZURE_STORAGE_ACCOUNT_KEY"   = var.azure_storage_account_key
   }
 }
