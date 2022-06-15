@@ -76,7 +76,7 @@ resource appServiceApp 'Microsoft.Web/sites@2020-12-01' = {
         }
         {
           name: 'DOCKER_REGISTRY_SERVER_USERNAME'
-          value: '${containerRegistry.name}'
+          value: containerRegistry.name
         }
         {
           name: 'DOCKER_REGISTRY_SERVER_PASSWORD'
